@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<!--
+Created using JS Bin
+http://jsbin.com
+
+Copyright (c) 2016 by reni2525 (http://jsbin.com/movetol/28/edit)
+
+Released under the MIT license: http://jsbin.mit-license.org
+-->
+<meta name="robots" content="noindex">
+<html>
+<head>
+<meta name="description" content="[slideShow]">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+  <script src="https://code.jquery.com/jquery-3.0.0.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+<script src="https://code.jquery.com/jquery.min.js"></script>
+<link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" type="text/css" />
+<script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+  
+<style id="jsbin-css">
+.header{
+  font-family: 'Pacifico', cursive;
+  color: #AED581;
+}
+body{
+  background-image: url("http://lauzonflooring.com/wp-content/uploads/2014/06/black-walnut-hardwood-flooring-brown-natural-international-designer-lauzon.jpg");
+  overflow: hidden;
+  
+}
+.container{
+ position: relative;
+ top: -98%;
+ padding: 0;
+ margin: 0px auto;
+}
+.outer{
+  width: 100%;
+  height: 540px;
+  position: absolute;
+  top: 10.5%;
+  left: 0;
+}
+.op{
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  opacity: 0.35;
+}
+footer{
+    color: #C7B98C;
+    position:absolute;
+    bottom: 0%;
+    width: 100%;
+    height: 25px;
+    text-align: center;
+    padding-left: 25px;
+    padding-bottom: 25px;
+    padding-top: 45px;
+    padding-right: 0px;
+    margin-top: 0; 
+}
+#slider {
+    margin-top: 4%;
+    width: 720px;
+    height: 400px;
+    overflow: hidden;
+    border: 7px solid #AED581;
+    border-radius: 25px;
+}
+#slider .slides {
+    display: block;
+    width: 6000px;
+    height: 400px;
+    margin: 0;
+    padding: 0;
+}
+#slider .slide {
+    float: left;
+    list-style-type: none;
+    width: 720px;
+    height: 400px;
+}
+</style>
+</head>
+<body>
+<div class="outer">
+ <div class="op"></div>
+ <div class="container">
+   <div class="span8 offset2">
+   <div class="header">
+     <h1 class="text-muted">jQuery Basic Slider</h1>
+   </div>
+   <div id="slider">
+     <ul class="slides">
+       <li class="slide"><img src="https://www.mylinea.com/wp-content/uploads/Surreal-Skies-2560%C3%971760-Wallpaper-720x400.jpg"/></li>
+       <li class="slide"><img src="http://learn.corel.com/wp-content/uploads/2015/11/Plein_Air_Painting_with_Corel_Painter18.jpg"/></li>
+       <li class="slide"><img src="http://eggheads.altervista.org/wp-content/uploads/2015/02/tumblr_mkbwk3UKsb1s7mo0do1_1280-720x400.jpg"/></li>
+       <li class="slide"><img src="https://caninosartisticcafe.files.wordpress.com/2016/07/artwork-for-elias.jpg?w=720&h=400&crop=1"/></li>
+       <li class="slide"><img src="http://gaddisvisuals.com/wp-content/uploads/2015/09/abstract-landscape-tree-art-colorful-gold-textured-original-painting-colorful-inspiration-by-madart-megan-duncanson-720x400.jpg"/></li>
+       <li class="slide"><img src="https://www.mylinea.com/wp-content/uploads/Surreal-Skies-2560%C3%971760-Wallpaper-720x400.jpg"/></li>
+     </ul>
+   </div>
+   </div> <!--row-->
+  </div> <!--con-->
+ </div> <!--outer-->
+ <footer>&copy 2016 Renata Fazekas</footer>
+<script id="jsbin-javascript">
+
+$(function(){
+var width = 720;
+var animationSpeed = 1000;
+var pause = 3000;
+var currentSlide = 1;
+
+var $slider= $('#slider'); 
+var $slideContainer = $slider.find('.slides'); 
+var $slides = $slideContainer.find('.slide'); 
+var interval; 
+function startSlider(){ 
+interval = setInterval(function(){
+  $slideContainer.animate({'margin-left':'-='+width}, animationSpeed, function(){ 
+    currentSlide++; 
+    if(currentSlide === $slides.length){ 
+      currentSlide = 1;
+      $slideContainer.css('margin-left','0'); 
+    }
+  });
+ },pause);
+}
+
+function pauseSlider(){
+  clearInterval(interval); 
+}
+$slider.on('mouseenter', pauseSlider).on('mouseleave', startSlider); 
+startSlider();                                                               
+});
+
+</script>
+</body>
+</html>
